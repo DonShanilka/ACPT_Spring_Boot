@@ -28,9 +28,13 @@ public class StudentController {
         return al;
     }
 
-    @PutMapping
-    public void updateStudent(){
-
+    @PutMapping("/{studentId}")
+    public ResponseEntity<Object> updateStudent(@PathVariable Integer studentId, @RequestBody Student student){
+        if(studentRepo.existsById(studentId)){
+            Student update = studentRepo.save(new Student(studentId, student.getName(), student.getAddress(), student.getMarks()));
+            return new ResponseEntity<>(update, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>("No student found",HttpStatus.OK);
     }
 
     @DeleteMapping("/{studentId}")

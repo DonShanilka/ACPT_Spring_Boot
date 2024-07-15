@@ -14,6 +14,17 @@ public class Student {
     private String address;
     private double marks;
 
+    public Student(Integer studentId, String name, String address, double marks) {
+        this.id = studentId;
+        this.name = name;
+        this.address = address;
+        this.marks = marks;
+    }
+
+    public Student() {
+
+    }
+
     public Integer getId() {
         return id;
     }

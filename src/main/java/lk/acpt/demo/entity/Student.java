@@ -25,6 +25,12 @@ public class Student {
 
     }
 
+    public Student(String name, String address, double marks ) {
+        this.name = name;
+        this.address = address;
+        this.marks = marks;
+    }
+
     public Integer getId() {
         return id;
     }

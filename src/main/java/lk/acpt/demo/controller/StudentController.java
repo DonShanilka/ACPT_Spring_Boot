@@ -41,10 +41,7 @@ public class StudentController {
 
     @DeleteMapping("/{studentId}")
     public ResponseEntity<String> deleteStudent(@PathVariable Integer studentId){
-        if (studentRepo.existsById(studentId)) {
-            studentRepo.deleteById(studentId);
-            return new ResponseEntity<>("Delete",HttpStatus.OK);
-        }
-        return new ResponseEntity<>("No Data Found !",HttpStatus.OK);
+        String msg = studentService.deleteStudent(studentId);
+        return new ResponseEntity<>(msg,HttpStatus.OK);
     }
 }

@@ -4,6 +4,8 @@ import lk.acpt.demo.dto.StudentDto;
 import lk.acpt.demo.entity.Student;
 import lk.acpt.demo.repo.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,9 +22,14 @@ public class StudentService {
         return new StudentDto(save.getId(),save.getName(),save.getAddress(),save.getMarks());
     }
 
-    public void deleteStudent(){
-
+    public String deleteStudent(Integer studentId){
+        if (studentRepo.existsById(studentId)) {
+            studentRepo.deleteById(studentId);
+            return "Delete";
+        }
+        return "No Data Found !";
     }
+
 
     public StudentDto updateStudent(Integer studentId, StudentDto studentDto){
         if(studentRepo.existsById(studentId)){
